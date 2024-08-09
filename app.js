@@ -10,6 +10,8 @@ var jobsRouter = require("./routes/jobs");
 //Database connectivity
 var mongoose = require("mongoose");
 var globals = require("./config/globals");
+//import HBS package to add helper functions
+var hbs = require("hbs");
 
 var app = express();
 
@@ -37,6 +39,11 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+//Register custom helper to change date formatting
+hbs.registerHelper("toShortDate", (longDateValue) => {
+  return new hbs.SafeString(longDateValue.toLocaleDateString("en-CA"));
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

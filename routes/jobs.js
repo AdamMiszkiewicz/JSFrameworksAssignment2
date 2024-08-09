@@ -31,9 +31,25 @@ router.post("/create", async (req, res ,next) => {
 });
 
 //Load form to edit job
-
+router.get("/edit/:_id", async (req, res, next) => {
+  let jobId = req.params._id;
+  let jobData = await Job.findById(jobId);
+  res.render("jobs/edit", { title: "Update Job Information", job: jobData });
+});
 
 //Save an edited job
+router.post("/edit/:_id", async (req, res, next) => {
+  let jobId = req.params._id;
+  await Job.findByIdAndUpdate(
+    {_id: jobId},
+    {
+      jobName: req.body.jobName,
+      jobDate: req.body.jobDate,
+      jobDescription: req.body.jobDescription,
+    }
+  );
+  res.redirect("/jobs");
+});
 
 //Delete project
 router.get("/delete/:_id", async(req, res, next) => {
