@@ -18,7 +18,7 @@
             {{!-- TODO: UPDATE and DELETE buttons --}}
             <td>
                 <a href="/jobs/edit/{{this._id}}" class="btn btn-primary btn-sm">Edit</a>
-                <a href="/jobs/delete/{{this._id}}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="/jobs/delete/{{this._id}}" class="btn btn-danger btn-sm" onclick="return confirmDeletion()">Delete</a>
             </td>
         </tr>
         {{/each}}
