@@ -1,0 +1,26 @@
+<h1>{{ title }}</h1>
+<a href="/jobs/create" class="btn btn-info">Add a Job</a>
+{{!-- TABLE TO SHOW ALL PROJECTS --}}
+<table class="table table-hover">
+    <thead>
+        <th>Job Name</th>
+        <th>JobDate</th>
+        <th>Job Description</th>
+        <th>Edit/Delete</th>
+    </thead>
+    <tbody>
+        {{!-- Retrieve all projects and loop --}}
+        {{#each dataset}}
+        <tr>
+            <td>{{this.jobName}}</td>
+            <td>{{this.jobDate}}</td>
+            <td>{{this.jobDescription}}</td>
+            {{!-- TODO: UPDATE and DELETE buttons --}}
+            <td>
+                <a href="/jobs/edit/{{this._id}}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="/jobs/delete/{{this._id}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
